@@ -3,9 +3,25 @@
 <%= form_for @song  do |f| %>
   <%= f.label :title %>
   <%= f.text_field :title %>
-  <br />
+  <br>
+
+  <%= f.label :artist_name %>
+  <%= f.text_field :artist_name %>
+  <br>
+
+  <%= f.label "Choose a Genre" %>
+  <%= f.select :genre_id, options_for_select(@genres.collect { |g| [g.name, g.id] }) %>
+  <br>
+
+  <h2>Notes</h2>
+
+  <%= f.fields_for :notes do |note_form| %>
+    <%= note_form.label :note %>
+    <%= note_form.text_area :content, rows: 5 %>
+    <br>
+  <% end %>
+
+  <br>
 
   <%= f.submit %>
 <% end %>
-
-
